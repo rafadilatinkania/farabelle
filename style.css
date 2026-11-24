@@ -1,0 +1,1795 @@
+:root {
+  --ivory: #FFFBF8;
+  --rose: #C9748A;
+  --rose-d: #A8566B;
+  --rose-s: #F6E3E8;
+  --ink: #1F1B1D;
+  --ink-s: #5C5357;
+  --bd: #E8DFDA;
+  --mut: #F3EDE9;
+  --r: 16px;
+  --sh: 0 4px 20px rgba(31, 27, 29, .06);
+  --lift: 0 10px 30px rgba(31, 27, 29, .1);
+  --spring: cubic-bezier(.34, 1.3, .64, 1)
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+body {
+  font: 15px/1.55 Inter, system-ui, sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  overflow-x: hidden
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: "Playfair Display", serif;
+  font-weight: 500
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+img {
+  display: block;
+  max-width: 100%
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0
+}
+
+:focus-visible {
+  outline: 2px solid var(--rose-d);
+  outline-offset: 2px
+}
+
+.logo {
+  font-size: 26px;
+  letter-spacing: .02em;
+  color: var(--rose-d)
+}
+
+.logo {
+  font-size: 26px;
+  letter-spacing: .02em;
+  color: var(--rose-d);
+}
+
+/* Susunan logo gambar dan tulisan */
+.bar .logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  gap: 8px;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.brand-logo {
+  display: block;
+  width: 48px;
+  height: 48px;
+  max-width: none;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.bar .logo span {
+  display: inline-block;
+  font-size: 26px;
+  color: var(--rose-d);
+}
+
+#splash {
+  position: fixed;
+  inset: 0;
+  background: var(--ivory);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  animation: out .4s .7s forwards
+}
+
+#splash .logo {
+  font-size: 44px;
+  animation: pop .6s var(--spring)
+}
+
+@keyframes out {
+  to {
+    opacity: 0;
+    visibility: hidden
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(.8)
+  }
+}
+
+/* navbar */
+#nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 251, 248, .94);
+  backdrop-filter: blur(8px);
+  transition: transform .3s, box-shadow .3s
+}
+
+#nav.hide {
+  transform: translateY(-100%)
+}
+
+#nav.shadow {
+  box-shadow: var(--sh)
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  max-width: 1280px;
+  margin: auto;
+  transition: padding .3s
+}
+
+#nav.shadow .bar {
+  padding-block: 6px
+}
+
+.search {
+  flex: 1;
+  position: relative;
+  max-width: 520px;
+  margin: auto
+}
+
+.search input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit
+}
+
+#suggest {
+  position: absolute;
+  inset: 48px 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--lift);
+  list-style: none;
+  padding: 6px;
+  z-index: 5
+}
+
+#suggest li {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer
+}
+
+#suggest li:hover {
+  background: var(--rose-s)
+}
+
+.icons {
+  display: flex;
+  gap: 2px
+}
+
+.ibtn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px
+}
+
+.ibtn:hover {
+  background: var(--mut)
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--rose-d);
+  color: #fff;
+  font: 600 11px/18px Inter;
+  text-align: center
+}
+
+.shake {
+  animation: shake .4s
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(-5px) rotate(-8deg)
+  }
+
+  75% {
+    transform: translateX(5px) rotate(8deg)
+  }
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 0 12px;
+  max-width: 1280px;
+  margin: auto;
+  scrollbar-width: none;
+}
+
+.tabs a {
+  position: relative;
+  padding: 10px 14px;
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--ink-s)
+}
+
+.tabs a.on {
+  color: var(--ink)
+}
+
+.tabs a.on::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 2px;
+  background: var(--rose);
+  animation: grow .35s
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0)
+  }
+}
+
+/* layout */
+main {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 16px 48px;
+  min-height: 70vh;
+  outline: 0
+}
+
+.page {
+  animation: pg .35s ease-out
+}
+
+@keyframes pg {
+  from {
+    opacity: 0;
+    transform: translateY(16px)
+  }
+}
+
+section {
+  margin-top: 44px
+}
+
+h2 {
+  font-size: 26px;
+  margin-bottom: 16px
+}
+
+.rv {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s, transform .5s
+}
+
+.rv.in {
+  opacity: 1;
+  transform: none
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 12px;
+  background: var(--rose-d);
+  color: #fff;
+  font-weight: 600;
+  transition: transform .15s, background .2s
+}
+
+.btn:hover {
+  background: #8f4558
+}
+
+.btn:active {
+  transform: scale(.98)
+}
+
+.btn.sm {
+  min-height: 36px;
+  padding: 0 14px
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--bd)
+}
+
+.btn[disabled] {
+  opacity: .45;
+  pointer-events: none
+}
+
+/* hero */
+.hero {
+  position: relative;
+  height: clamp(240px, 46vw, 460px);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-top: 16px;
+  background: var(--mut);
+  touch-action: pan-y
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .9s
+}
+
+.slide.on {
+  opacity: 1
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+.slide.on img {
+  animation: kb 6s ease-out forwards
+}
+
+@keyframes kb {
+  to {
+    transform: scale(1.08)
+  }
+}
+
+.slide .tx {
+  position: absolute;
+  left: 5%;
+  bottom: 14%;
+  max-width: 420px;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .45)
+}
+
+.slide h1 {
+  font-size: clamp(26px, 5vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 8px
+}
+
+.dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px
+}
+
+.dots i {
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .5);
+  overflow: hidden;
+  cursor: pointer
+}
+
+.dots i b {
+  display: block;
+  height: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left
+}
+
+.dots i.on b {
+  animation: prog 5s linear forwards
+}
+
+@keyframes prog {
+  to {
+    transform: none
+  }
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px
+}
+
+.benefits div {
+  background: var(--rose-s);
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 13px
+}
+
+.cats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px
+}
+
+.cat {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--mut)
+}
+
+.cat img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s
+}
+
+.cat:hover img {
+  transform: scale(1.05)
+}
+
+.cat span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 28px 14px 12px;
+  color: #fff;
+  font: 500 20px "Playfair Display";
+  background: linear-gradient(transparent, rgba(0, 0, 0, .55))
+}
+
+.rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  scrollbar-width: none
+}
+
+.rail .card {
+  flex: 0 0 46%;
+  scroll-snap-align: start
+}
+
+.railwrap {
+  position: relative
+}
+
+.arrow {
+  display: none;
+  position: absolute;
+  top: 38%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--lift);
+  z-index: 2
+}
+
+.arrow.l {
+  left: -14px
+}
+
+.arrow.r {
+  right: -14px
+}
+
+.promo {
+  border-radius: var(--r);
+  background: var(--rose-s);
+  padding: 40px 24px;
+  text-align: center
+}
+
+.promo h2 {
+  margin-bottom: 8px
+}
+
+.trust {
+  display: grid;
+  gap: 12px
+}
+
+.trust div {
+  background: #fff;
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  padding: 18px
+}
+
+.trust h3 {
+  font-size: 18px;
+  margin-bottom: 4px
+}
+
+/* products */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px
+}
+
+.card {
+  position: relative;
+  transition: transform .25s, opacity .3s;
+  animation: pg .4s backwards
+}
+
+.card:active {
+  transform: scale(.98)
+}
+
+.ph {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--mut)
+}
+
+.ph img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity .4s
+}
+
+.ph img+img {
+  opacity: 0
+}
+
+.tag {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  z-index: 1
+}
+
+.tag b {
+  font: 600 11px/1 Inter;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--rose-d)
+}
+
+.tag b.d {
+  background: var(--rose-d);
+  color: #fff
+}
+
+.wish {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 2;
+  transition: transform .3s var(--spring)
+}
+
+.wish.on {
+  color: var(--rose-d)
+}
+
+.wish:active {
+  transform: scale(1.3)
+}
+
+.card .nm {
+  margin-top: 8px;
+  font-size: 14px
+}
+
+.price {
+  font-weight: 600
+}
+
+.price s {
+  color: var(--ink-s);
+  font-weight: 400;
+  margin-left: 6px;
+  font-size: 13px
+}
+
+.skel {
+  aspect-ratio: 3/4;
+  border-radius: var(--r);
+  background: linear-gradient(90deg, var(--mut) 25%, #fff 50%, var(--mut) 75%);
+  background-size: 200% 100%;
+  animation: sh 1s infinite
+}
+
+@keyframes sh {
+  to {
+    background-position: -200% 0
+  }
+}
+
+.cathead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0 10px
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0
+}
+
+.chip {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid var(--bd);
+  background: #fff;
+  font-size: 13px;
+  transition: .2s
+}
+
+.chip.on {
+  background: var(--rose-s);
+  border-color: var(--rose);
+  color: var(--rose-d)
+}
+
+select,
+.field {
+  min-height: 44px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  padding: 0 12px;
+  background: #fff;
+  font: inherit;
+  width: 100%
+}
+
+.layout {
+  display: block
+}
+
+.side {
+  display: none
+}
+
+.side h3 {
+  font-size: 16px;
+  margin: 14px 0 8px
+}
+
+.sw {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--bd)
+}
+
+.sw.on {
+  box-shadow: 0 0 0 2px var(--rose-d)
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 10px;
+  color: var(--ink-s)
+}
+
+/* product detail */
+.pd {
+  display: grid;
+  gap: 24px;
+  margin-top: 20px
+}
+
+.gal .main {
+  aspect-ratio: 3/4;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--mut);
+  cursor: zoom-in
+}
+
+.gal .main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s
+}
+
+.gal .main.z img {
+  transform: scale(1.8);
+  cursor: zoom-out
+}
+
+.thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px
+}
+
+.thumbs img {
+  width: 64px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: .6;
+  cursor: pointer;
+  border: 2px solid transparent
+}
+
+.thumbs img.on {
+  opacity: 1;
+  border-color: var(--rose)
+}
+
+.opts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0 16px
+}
+
+.sz {
+  min-width: 48px;
+  min-height: 44px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  background: #fff;
+  position: relative;
+  transition: .2s
+}
+
+.sz.on {
+  border-color: var(--rose-d);
+  background: var(--rose-s)
+}
+
+.sz.on::after {
+  content: "✓";
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--rose-d);
+  color: #fff;
+  font-size: 11px;
+  animation: pop .3s var(--spring)
+}
+
+.sz[disabled] {
+  color: #aaa;
+  background: var(--mut);
+  text-decoration: line-through;
+  cursor: not-allowed
+}
+
+.low {
+  color: #b3261e;
+  font-weight: 500
+}
+
+.sticky {
+  position: sticky;
+  bottom: 0;
+  background: var(--ivory);
+  padding: 10px 0;
+  display: flex;
+  gap: 8px;
+  z-index: 5
+}
+
+.sticky .btn:first-child {
+  flex: 1
+}
+
+.fly {
+  position: fixed;
+  z-index: 90;
+  width: 70px;
+  border-radius: 12px;
+  pointer-events: none;
+  object-fit: cover;
+  aspect-ratio: 3/4
+}
+
+/* drawer & modal */
+#backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 27, 29, .4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s;
+  z-index: 40
+}
+
+#backdrop.on {
+  opacity: 1;
+  visibility: visible
+}
+
+#drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 100%);
+  background: var(--ivory);
+  z-index: 50;
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(.2, .9, .3, 1);
+  display: flex;
+  flex-direction: column
+}
+
+#drawer.on {
+  transform: none
+}
+
+.dh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--bd)
+}
+
+.dl {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 16px
+}
+
+.df {
+  padding: 16px;
+  border-top: 1px solid var(--bd)
+}
+
+.ci {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 12px;
+  padding: 10px 0;
+  transition: transform .35s, opacity .35s
+}
+
+.ci.out {
+  transform: translateX(100%);
+  opacity: 0
+}
+
+.ci img {
+  width: 64px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 8px
+}
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  margin-top: 6px
+}
+
+.qty button {
+  width: 36px;
+  height: 36px
+}
+
+#modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 60;
+  padding: 16px;
+  background: rgba(31, 27, 29, .4);
+  animation: fade .25s
+}
+
+#modal[hidden] {
+  display: none
+}
+
+#modal>div {
+  background: #fff;
+  border-radius: var(--r);
+  padding: 24px;
+  max-width: 460px;
+  width: 100%;
+  max-height: 85vh;
+  overflow: auto;
+  animation: scalein .3s var(--spring)
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+}
+
+@keyframes scalein {
+  from {
+    opacity: 0;
+    transform: scale(.92)
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse
+}
+
+td,
+th {
+  padding: 8px;
+  border-bottom: 1px solid var(--bd);
+  text-align: left
+}
+
+#toasts {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 80;
+  display: grid;
+  gap: 8px
+}
+
+.toast {
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  animation: pg .35s, fade .3s 2.4s reverse forwards
+}
+
+.wa {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1f8a4c;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  box-shadow: var(--lift);
+  z-index: 35
+}
+
+#cookie {
+  position: fixed;
+  left: 12px;
+  right: 80px;
+  bottom: 12px;
+  background: #fff;
+  border-radius: var(--r);
+  box-shadow: var(--lift);
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 34;
+  font-size: 13px
+}
+
+/* checkout */
+.steps {
+  display: flex;
+  gap: 6px;
+  margin: 20px 0
+}
+
+.steps i {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--bd);
+  overflow: hidden
+}
+
+.steps i b {
+  display: block;
+  height: 100%;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s
+}
+
+.steps i.on b {
+  transform: none
+}
+
+.co {
+  display: grid;
+  gap: 24px
+}
+
+.step {
+  display: grid;
+  gap: 12px;
+  animation: sl .35s ease-out
+}
+
+@keyframes sl {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--dir, 1)*40px))
+  }
+}
+
+.field.bad {
+  border-color: #b3261e;
+  animation: shake2 .35s
+}
+
+@keyframes shake2 {
+  25% {
+    transform: translateX(-5px)
+  }
+
+  75% {
+    transform: translateX(5px)
+  }
+}
+
+.box {
+  background: #fff;
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  padding: 16px
+}
+
+.opt {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  animation: pg .35s backwards
+}
+
+.opt.on {
+  border-color: var(--rose-d);
+  background: var(--rose-s)
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0
+}
+
+.tot {
+  font-weight: 600;
+  font-size: 17px;
+  border-top: 1px solid var(--bd);
+  margin-top: 6px;
+  padding-top: 10px
+}
+
+.ok {
+  text-align: center;
+  padding: 30px 0
+}
+
+.ok svg {
+  width: 96px;
+  height: 96px
+}
+
+.ok circle,
+.ok path {
+  fill: none;
+  stroke: var(--rose-d);
+  stroke-width: 4;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: draw .8s forwards
+}
+
+.ok path {
+  animation-delay: .5s
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0
+  }
+}
+
+.conf {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 12px;
+  z-index: 90;
+  animation: fall 2s ease-in forwards
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(105vh) rotate(540deg);
+    opacity: 0
+  }
+}
+
+.tl {
+  list-style: none;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--bd);
+  margin: 16px 0
+}
+
+.tl li {
+  position: relative;
+  padding: 0 0 22px 16px;
+  color: var(--ink-s);
+  opacity: .5
+}
+
+.tl li::before {
+  content: "";
+  position: absolute;
+  left: -33px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--bd)
+}
+
+.tl li.done {
+  opacity: 0;
+  animation: fadein .5s forwards;
+  animation-delay: calc(var(--i)*.35s);
+  color: var(--ink)
+}
+
+.tl li.done::before {
+  background: var(--rose-d);
+  border-color: var(--rose-d)
+}
+
+@keyframes fadein {
+  to {
+    opacity: 1
+  }
+}
+
+details {
+  border-bottom: 1px solid var(--bd);
+  padding: 14px 0
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 500
+}
+
+details[open] p {
+  animation: pg .3s
+}
+
+.soon {
+  display: inline-block;
+  background: var(--mut);
+  color: var(--ink-s);
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px
+}
+
+footer {
+  background: var(--mut);
+  padding: 32px 16px 20px
+}
+
+.cols {
+  display: grid;
+  gap: 20px;
+  max-width: 1280px;
+  margin: auto
+}
+
+footer h4 {
+  margin-bottom: 6px
+}
+
+footer a {
+  display: block;
+  padding: 4px 0;
+  color: var(--ink-s)
+}
+
+.copy {
+  text-align: center;
+  color: var(--ink-s);
+  font-size: 12px;
+  margin-top: 24px
+}
+
+@media(min-width:768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr)
+  }
+
+  .benefits {
+    grid-template-columns: repeat(4, 1fr)
+  }
+
+  .cats {
+    grid-template-columns: repeat(5, 1fr)
+  }
+
+  .rail .card {
+    flex-basis: 23%
+  }
+
+  .arrow {
+    display: block
+  }
+
+  .trust {
+    grid-template-columns: repeat(3, 1fr)
+  }
+
+  .cols {
+    grid-template-columns: repeat(3, 1fr)
+  }
+
+  .pd {
+    grid-template-columns: 1.1fr 1fr
+  }
+
+  .co {
+    grid-template-columns: 1.5fr 1fr
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 28px
+  }
+
+  .side {
+    display: block
+  }
+
+  .card:hover {
+    transform: translateY(-4px)
+  }
+
+  .card:hover .ph img+img {
+    opacity: 1
+  }
+
+  .card .wish {
+    opacity: 0;
+    transform: scale(.6)
+  }
+
+  .card:hover .wish,
+  .wish.on {
+    opacity: 1;
+    transform: none
+  }
+
+  .sticky {
+    position: static
+  }
+}
+
+@media(min-width:1100px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr)
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    animation-delay: 0s !important
+  }
+}
+
+/* Logo Farabelle */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.brand span {
+  color: var(--rose-d);
+  font-size: 26px;
+  font-family: "Playfair Display", serif;
+}
+
+.brand span i {
+  color: #000000;
+  font-style: italic;
+}
+
+/* LOADING KUPU-KUPU FARABELLE */
+#butterfly-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 245, 249, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#butterfly-transition.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-butterfly {
+  text-align: center;
+  animation: butterflyPulse 1.5s ease-in-out infinite;
+}
+
+.loading-butterfly span {
+  font-size: 75px;
+}
+
+.loading-butterfly p {
+  color: #bd7894;
+  font-family: serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+@keyframes butterflyPulse {
+
+  0%,
+  100% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* LOADING KUPU-KUPU FARABELLE */
+#butterfly-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 251, 248, 0.90);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+#butterfly-loader.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loader-butterfly {
+  font-size: 65px;
+  display: inline-block;
+  animation: butterflyLoading 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes butterflyLoading {
+  from {
+    transform: scale(0.85) rotate(-10deg);
+  }
+
+  to {
+    transform: scale(1.1) rotate(10deg);
+  }
+}
+
+/* ===== Banner beranda: teks kiri + foto utuh kanan (tanpa zoom) ===== */
+.hero {
+  height: clamp(440px, 38vw, 500px);
+  background: var(--rose-s)
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 max(5%, 64px);
+  background: var(--bg, var(--rose-s))
+}
+
+.slide.on img {
+  animation: none
+}
+
+.slide img {
+  order: 2;
+  margin-left: auto;
+  flex: 0 0 auto;
+  width: 58%;
+  height: auto;
+  max-width: none;
+  max-height: calc(100% - 44px);
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: var(--lift)
+}
+
+.slide .tx {
+  position: static;
+  order: 1;
+  flex: 1;
+  max-width: 520px;
+  color: var(--ink);
+  text-shadow: none;
+  z-index: 2
+}
+
+.slide .kick {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--rose-d)
+}
+
+.slide h1 {
+  margin-bottom: 10px
+}
+
+.slide .tx p {
+  margin-bottom: 20px;
+  color: var(--ink-s);
+  font-size: clamp(14px, 1.5vw, 17px)
+}
+
+.slide.wide {
+  padding: 0
+}
+
+.slide.wide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover
+}
+
+.slide.wide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(255, 251, 248, .92) 0, rgba(255, 251, 248, .55) 40%, transparent 65%)
+}
+
+.slide.wide .tx {
+  position: relative;
+  padding-left: 5%
+}
+
+.dots {
+  left: max(5%, 64px);
+  bottom: 24px;
+  transform: none;
+  z-index: 5
+}
+
+.dots i {
+  width: 30px;
+  background: rgba(31, 27, 29, .15)
+}
+
+.dots i b {
+  background: var(--ink)
+}
+
+.hn {
+  position: absolute;
+  bottom: 18px;
+  z-index: 5;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--sh);
+  font-size: 24px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background .2s, transform .15s
+}
+
+.hn:hover {
+  background: var(--rose-s)
+}
+
+.hn:active {
+  transform: scale(.92)
+}
+
+.hn.p {
+  right: 76px
+}
+
+.hn.n {
+  right: 18px
+}
+
+@media(max-width:767px) {
+  .hero {
+    height: 510px
+  }
+
+  .slide {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 24px 5% 72px
+  }
+
+  .dots {
+    left: 5%
+  }
+
+  .slide .tx {
+    flex: 0 0 auto;
+    max-width: none
+  }
+
+  .slide img {
+    order: 2;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    flex: none;
+    border-radius: 14px;
+    box-shadow: none
+  }
+
+  .slide.wide img {
+    flex: none
+  }
+
+  .slide.wide .tx {
+    padding: 24px 5% 0
+  }
+
+  .slide.wide::before {
+    background: linear-gradient(180deg, rgba(255, 251, 248, .92) 0, rgba(255, 251, 248, .5) 45%, transparent 70%)
+  }
+
+  .hn.p {
+    right: 70px
+  }
+
+  .hn.n {
+    right: 14px
+  }
+
+  .hn {
+    bottom: 14px
+  }
+
+  .dots {
+    bottom: 30px
+  }
+}
+
+@media(min-width:768px) {
+  .hn {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%)
+  }
+
+  .hn:active {
+    transform: translateY(-50%) scale(.92)
+  }
+
+  .hn.p {
+    left: 8px;
+    right: auto
+  }
+
+  .hn.n {
+    right: 8px
+  }
+}
+
+/* ===== Halaman Tentang Kami ===== */
+.about{max-width:1180px;margin:24px auto}
+.about-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-photo{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3.4;background:var(--rose-s)}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.about-photo.nophoto{display:grid;place-items:center}
+.about-photo.nophoto::after{content:"Letakkan foto toko di image/toko.jpeg";color:var(--rose-d);font-size:14px;padding:16px;text-align:center}
+.about-info h1{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,44px);line-height:1.2;margin:0 0 16px}
+.about-info .lead{color:var(--ink-s);font-size:18px;line-height:1.6;margin:0 0 24px}
+.about-list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.about-list li{display:flex;gap:14px;align-items:flex-start}
+.about-list svg{width:28px;height:28px;flex:none;fill:none;stroke:var(--rose-d);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.about-list b{display:block;font-size:17px}
+.about-list span{display:block;color:var(--ink-s);line-height:1.5}
+.about-list a{color:var(--rose-d);text-decoration:underline}
+.about-map{margin-top:48px}
+.about-map h2{font-family:"Playfair Display",serif;margin:0 0 16px}
+.map-wrap{border-radius:var(--r);overflow:hidden;border:1px solid #eadfe2;margin-bottom:16px}
+.map-wrap iframe{display:block;width:100%;height:420px;border:0}
+@media(max-width:800px){.about-top{grid-template-columns:1fr;gap:24px}.map-wrap iframe{height:320px}}
+
+.about-story{margin-top:48px;max-width:760px}
+.about-story h2{font-family:"Playfair Display",serif;margin:0 0 12px}
+.about-story p{color:var(--ink-s);font-size:18px;line-height:1.7;margin:0}
+
+
+/* ===== Intro: kupu-kupu dulu, lalu tulisan Farabelle muncul di tengah ===== */
+#intro{position:fixed;inset:0;z-index:10000;perspective:1800px;pointer-events:none;background:var(--ivory,#FFFAF7);animation:introHide 5.8s linear forwards}
+#intro .intro-half{position:absolute;top:0;bottom:0;width:50%;background:var(--ivory,#FFFAF7);overflow:hidden;backface-visibility:hidden;will-change:transform,opacity;pointer-events:auto}
+#intro .intro-half svg{position:absolute;right:0;top:0;width:100%;height:100%;display:block}
+#intro .l{left:0;transform-origin:100% 50%;animation:wingL 3.6s both}
+#intro .r{right:0;transform-origin:0 50%;animation:wingR 3.6s both}
+#intro .r svg{transform:scaleX(-1)}
+#intro .intro-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Playfair Display",serif;font-weight:600;font-size:clamp(46px,9vw,110px);color:#A8566B;letter-spacing:.01em;white-space:nowrap;text-shadow:0 0 14px #FFFAF7,0 0 28px #FFFAF7;opacity:0;z-index:2;animation:introText 5.8s both}
+#intro .intro-logo i{color:#111;font-style:italic}
+@keyframes wingL{0%{transform:rotateY(0)}12%{transform:rotateY(-7deg)}24%{transform:rotateY(0)}36%{transform:rotateY(-7deg)}48%{transform:rotateY(0);animation-timing-function:cubic-bezier(.65,0,.3,1)}92%{transform:rotateY(-112deg);opacity:1}100%{transform:rotateY(-112deg);opacity:0}}
+@keyframes wingR{0%{transform:rotateY(0)}12%{transform:rotateY(7deg)}24%{transform:rotateY(0)}36%{transform:rotateY(7deg)}48%{transform:rotateY(0);animation-timing-function:cubic-bezier(.65,0,.3,1)}92%{transform:rotateY(112deg);opacity:1}100%{transform:rotateY(112deg);opacity:0}}
+/* tulisan: baru muncul setelah sayap mulai membuka (~2,2 dtk), tampil di tengah, lalu hilang */
+@keyframes introText{0%,54%{opacity:0;transform:translate(-50%,-50%) scale(.9)}68%{opacity:1;transform:translate(-50%,-50%) scale(1)}90%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)}}
+@keyframes introHide{0%,90%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}100%{opacity:0;visibility:hidden}}
+@media (prefers-reduced-motion:reduce){#intro{display:none}}
+/* ===== Kupu-kupu pita Farabelle: terbang tiap pindah menu (Baru, Atasan, Bawahan, dst.) ===== */
+#butterfly-loader{display:none!important}   /* sembunyikan kupu-kupu emoji lama */
+#km-wrap{position:fixed;inset:0;z-index:9999;overflow:hidden;pointer-events:none;visibility:hidden;--km:clamp(120px,15vw,200px)}
+#km-wrap.show{visibility:visible}
+#km-wrap .km-path{position:absolute;left:0;top:0;width:var(--km);height:var(--km);opacity:0;will-change:transform,opacity}
+#km-wrap .km-glow{position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,rgba(255,226,160,.6),rgba(255,170,205,.34) 42%,transparent 70%);animation:kmPulse .5s ease-in-out infinite alternate}
+#km-wrap .km-in{position:absolute;inset:0;perspective:520px;animation:kmBob .5s ease-in-out infinite alternate}
+#km-wrap .km-l,#km-wrap .km-r{position:absolute;top:0;height:100%;background:url(image/kupu-menu.webp) no-repeat;will-change:transform}
+#km-wrap .km-l{left:0;width:41.7%;background-size:239.8% 100%;background-position:0 0;transform-origin:100% 50%;animation:kmFlapL .24s ease-in-out infinite alternate}
+#km-wrap .km-r{left:41.7%;width:58.3%;background-size:171.5% 100%;background-position:100% 0;transform-origin:0 50%;animation:kmFlapR .24s ease-in-out infinite alternate}
+@keyframes kmFlapL{from{transform:rotateY(2deg)}to{transform:rotateY(-64deg)}}
+@keyframes kmFlapR{from{transform:rotateY(-2deg)}to{transform:rotateY(64deg)}}
+@keyframes kmBob{from{transform:translateY(-4%)}to{transform:translateY(4%)}}
+@keyframes kmPulse{from{opacity:.65;transform:scale(.9)}to{opacity:1;transform:scale(1.1)}}
+/* aksen bling-bling */
+#km-wrap .km-star{position:absolute;opacity:0;filter:drop-shadow(0 0 6px var(--c)) drop-shadow(0 0 2px var(--c))}
+#km-wrap .km-star i{display:block;width:100%;height:100%;background:radial-gradient(circle,#fff 0 18%,var(--c) 56%);clip-path:polygon(50% 0,56% 44%,100% 50%,56% 56%,50% 100%,44% 56%,0 50%,44% 44%)}
+#km-wrap .km-dust{position:absolute;opacity:0;border-radius:50%;background:radial-gradient(circle,#fff 0 30%,var(--c) 70%);box-shadow:0 0 6px var(--c)}
+footer a h4{color:var(--ink)}
+footer a.lokasi{padding:0}
+footer a.lokasi:hover h4{color:var(--rose-d)}
+/* Matikan kupu-kupu lama yang muncul saat klik menu */
+#km-wrap{display:none!important}
+
+/* Kupu-kupu kecil: hanya muncul saat logo Farabelle diklik */
+#kupu-logo{position:fixed;left:0;top:0;width:64px;height:64px;z-index:9999;pointer-events:none;opacity:0;will-change:transform,opacity}
+#kupu-logo .kl-in{position:absolute;inset:0;perspective:300px}
+#kupu-logo .kl-l,#kupu-logo .kl-r{position:absolute;top:0;height:100%;background:url(image/kupu-menu.webp) no-repeat;will-change:transform}
+#kupu-logo .kl-l{left:0;width:41.7%;background-size:239.8% 100%;background-position:0 0;transform-origin:100% 50%;animation:kmFlapL .24s ease-in-out infinite alternate}
+#kupu-logo .kl-r{left:41.7%;width:58.3%;background-size:171.5% 100%;background-position:100% 0;transform-origin:0 50%;animation:kmFlapR .24s ease-in-out infinite alternate}
+/* Kilau bling-bling kupu-kupu logo */
+.kl-star{position:fixed;z-index:9998;pointer-events:none;opacity:0;filter:drop-shadow(0 0 6px var(--c)) drop-shadow(0 0 2px var(--c))}
+.kl-star i{display:block;width:100%;height:100%;background:radial-gradient(circle,#fff 0 18%,var(--c) 56%);clip-path:polygon(50% 0,56% 44%,100% 50%,56% 56%,50% 100%,44% 56%,0 50%,44% 44%)}
